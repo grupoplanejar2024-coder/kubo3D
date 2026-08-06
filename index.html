@@ -1,34 +1,133 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>SNES Touch-to-Play</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            overflow: hidden;
-        }
-        #game {
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kubo Touch - SNES Collection</title>
+
+<style>
+
+body{
+background:#3b2b8f;
+font-family:Arial,Helvetica,sans-serif;
+margin:0;
+padding:0;
+color:white;
+}
+
+header{
+background:#5d4bd6;
+padding:30px;
+text-align:center;
+}
+
+h1{
+margin:0;
+font-size:42px;
+}
+
+h2{
+font-weight:normal;
+}
+
+.container{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:20px;
+
+padding:40px;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:15px;
+
+padding:20px;
+
+text-align:center;
+
+color:#222;
+
+text-decoration:none;
+
+transition:.2s;
+
+}
+
+.card:hover{
+
+transform:scale(1.05);
+
+}
+
+footer{
+
+text-align:center;
+
+padding:30px;
+
+}
+
+</style>
+
 </head>
+
 <body>
-    <div id="game"></div>
-    <script>
-        EJS_player = '#game';
-        EJS_core = 'snes';
-        EJS_gameUrl = 'jogo.smc'; // ATENÇÃO: Altere aqui para o nome exato do seu arquivo de jogo
-        EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
-    </script>
-    <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
+
+<header>
+
+<h1>🎮 Kubo Touch</h1>
+
+<h2>Coleção SNES NFC</h2>
+
+</header>
+
+<div class="container">
+
+<a class="card" href="jogos/smw.html">Super Mario World</a>
+
+<a class="card" href="jogos/topgear.html">Top Gear</a>
+
+<a class="card" href="jogos/dkc.html">Donkey Kong Country</a>
+
+<a class="card" href="jogos/aladdin.html">Aladdin</a>
+
+<a class="card" href="jogos/zelda.html">Zelda A Link to the Past</a>
+
+<a class="card" href="jogos/gooftroop.html">Goof Troop</a>
+
+<a class="card" href="jogos/allstars.html">Super Mario All-Stars</a>
+
+<a class="card" href="jogos/mariokart.html">Super Mario Kart</a>
+
+<a class="card" href="jogos/sunset.html">Sunset Riders</a>
+
+<a class="card" href="jogos/rnr.html">Rock N Roll Racing</a>
+
+<a class="card" href="jogos/bikermice.html">Biker Mice from Mars</a>
+
+<a class="card" href="jogos/bomberman.html">Bomberman</a>
+
+<a class="card" href="jogos/lionking.html">The Lion King</a>
+
+<a class="card" href="jogos/tmnt.html">TMNT IV</a>
+
+<a class="card" href="jogos/yoshi.html">Yoshi's Island</a>
+
+</div>
+
+<footer>
+
+Kubo 3D © 2026
+
+</footer>
+
 </body>
 </html>
