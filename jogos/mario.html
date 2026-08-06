@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Mario World - Kubo Touch</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    header {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .badge {
+      background-color: #e60012;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .card {
+      background-color: #1e1e1e;
+      border-radius: 16px;
+      max-width: 450px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      border: 1px solid #333;
+    }
+    .cover-container {
+      width: 100%;
+      height: 250px;
+      background: #2a2a2a url('../imagens/mario-cover.jpg') center/cover no-repeat;
+      position: relative;
+    }
+    .content {
+      padding: 24px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .meta-info {
+      display: flex;
+      gap: 12px;
+      font-size: 13px;
+      color: #aaa;
+      margin-bottom: 16px;
+    }
+    p.description {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #ddd;
+      margin-bottom: 20px;
+    }
+    .details {
+      background-color: #282828;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+    .details ul {
+      list-style: none;
+    }
+    .details li {
+      margin-bottom: 6px;
+    }
+    .details li:last-child {
+      margin-bottom: 0;
+    }
+    .btn-play {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background-color: #e60012;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .btn-play:hover {
+      background-color: #ff1a2d;
+    }
+    #emulator-container {
+      display: none;
+      width: 100%;
+      max-width: 800px;
+      height: 600px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span class="badge">KUBO TOUCH</span>
+  </header>
+
+  <div class="card" id="game-card">
+    <div class="cover-container"></div>
+    <div class="content">
+      <h1>Super Mario World</h1>
+      <div class="meta-info">
+        <span>🎮 1-2 Jogadores</span>
+        <span>📅 1990</span>
+        <span>🏢 Nintendo</span>
+      </div>
+      
+      <p class="description">
+        Embarque em uma aventura clássica pelo Dinosaur Land! Ajude Mario e Luigi a resgatarem a Princesa Peach e salvarem os amigos de Yoshi das garras do maligno Bowser.
+      </p>
+
+      <div class="details">
+        <ul>
+          <li>✨ <strong>Curiosidade:</strong> Este foi o jogo de estreia do dinossauro Yoshi!</li>
+          <li>🎯 <strong>Gênero:</strong> Plataforma / Aventura</li>
+        </ul>
+      </div>
+
+      <button class="btn-play" onclick="startEmulator()">▶ JOGAR AGORA</button>
+    </div>
+  </div>
+
+  <div id="emulator-container">
+    <iframe id="emulator-frame" src="" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    function startEmulator() {
+      // Oculta o card de informações
+      document.getElementById('game-card').style.display = 'none';
+      
+      // Carrega o emulador via EmulatorJS apontando para a ROM em ../roms/mario.sfc
+      const container = document.getElementById('emulator-container');
+      const iframe = document.getElementById('emulator-frame');
+      
+      // URL configurada usando o emulador web para SNES
+      iframe.src = "https://emulatorjs.org/embed/#snes&rom=" + encodeURIComponent(window.location.origin + "/roms/mario.sfc");
+      
+      container.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
