@@ -1,102 +1,84 @@
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Donkey Kong Country - Kubo Touch</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: #121212;
-      color: #ffffff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex; flex-direction: column; align-items: center;
-      min-height: 100vh; padding: 20px;
-    }
-    header { margin-bottom: 20px; text-align: center; }
-    .badge {
-      background-color: #e60012; color: white; padding: 4px 12px;
-      border-radius: 12px; font-size: 12px; font-weight: bold; letter-spacing: 1px;
-    }
-    .card {
-      background-color: #1e1e1e; border-radius: 16px; max-width: 450px;
-      width: 100%; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.5); border: 1px solid #333;
-    }
-    .cover-container {
-      width: 100%; height: 250px;
-      background: #2a2a2a url('../imagens/donkeykong-cover.jpg') center/cover no-repeat;
-      position: relative;
-    }
-    .content { padding: 24px; }
-    h1 { font-size: 24px; margin-bottom: 8px; color: #fff; }
-    .meta-info { display: flex; gap: 12px; font-size: 13px; color: #aaa; margin-bottom: 16px; }
-    p.description { font-size: 14px; line-height: 1.6; color: #ddd; margin-bottom: 20px; }
-    .details { background-color: #282828; border-radius: 8px; padding: 12px; margin-bottom: 20px; font-size: 13px; }
-    .details ul { list-style: none; }
-    .details li { margin-bottom: 6px; }
-    .btn-play {
-      display: block; width: 100%; padding: 16px; background-color: #e60012;
-      color: white; text-align: center; text-decoration: none; font-weight: bold;
-      font-size: 18px; border-radius: 12px; border: none; cursor: pointer; transition: background-color 0.2s;
-    }
-    .btn-play:hover { background-color: #ff1a2d; }
-    #game-container { display: none; width: 100%; max-width: 800px; height: 600px; margin-top: 10px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Donkey Kong Country - Kubo Touch</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #121212; color: #fff; font-family: Arial, sans-serif; }
+        header { text-align: center; padding: 15px; background: #1e1e1e; }
+        .badge { background: #f39c12; color: #fff; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 14px; }
+        #game-card { max-width: 500px; margin: 20px auto; background: #1e1e1e; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .cover-container { width: 100%; height: 250px; background-image: url('../imagens/donkeykong-cover.jpg'); background-size: cover; background-position: center; }
+        .content { padding: 20px; }
+        h1 { margin: 0 0 10px 0; font-size: 24px; color: #f1c40f; }
+        .meta-info { display: flex; gap: 10px; margin-bottom: 15px; font-size: 13px; color: #aaa; }
+        .description { font-size: 14px; line-height: 1.5; color: #ddd; margin-bottom: 15px; }
+        .details { font-size: 13px; color: #bbb; margin-bottom: 20px; }
+        .details ul { padding-left: 20px; margin: 0; }
+        .btn-play { display: block; width: 100%; padding: 12px; background: #27ae60; color: #fff; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; text-align: center; }
+        .btn-play:hover { background: #219150; }
+        #game-container { display: none; width: 100%; height: 100vh; }
+    </style>
 </head>
 <body>
 
-  <header>
-    <span class="badge">KUBO TOUCH</span>
-  </header>
+    <header>
+        <span class="badge">KUBO TOUCH</span>
+    </header>
 
-  <div class="card" id="game-card">
-    <div class="cover-container"></div>
-    <div class="content">
-      <h1>Donkey Kong Country</h1>
-      <div class="meta-info">
-        <span>🎮 1-2 Jogadores</span>
-        <span>📅 1994</span>
-        <span>🏢 Rare / Nintendo</span>
-      </div>
-      
-      <p class="description">
-        Junte-se a Donkey Kong e Diddy Kong para recuperar o roubado estoque de bananas das garras do maligno King K. Rool e seus Kremlings!
-      </p>
+    <div class="card" id="game-card">
+        <div class="cover-container"></div>
+        <div class="content">
+            <h1>Donkey Kong Country</h1>
+            <div class="meta-info">
+                <span>🎮 1-2 Jogadores</span>
+                <span>📅 1994</span>
+                <span>🏢 Rare / Nintendo</span>
+            </div>
 
-      <div class="details">
-        <ul>
-          <li>🍌 <strong>Curiosidade:</strong> Revolucionou a época com seus impressionantes gráficos pré-renderizados em 3D!</li>
-          <li>🎯 <strong>Gênero:</strong> Plataforma</li>
-        </ul>
-      </div>
+            <p class="description">
+                Junte-se a Donkey Kong e Diddy Kong para recuperar o roubado estoque de bananas das garras do maligno King K. Rool e seus Kremlings!
+            </p>
 
-      <button class="btn-play" onclick="startEmulator()">▶ JOGAR AGORA</button>
+            <div class="details">
+                <ul>
+                    <li><strong>✍️ Curiosidade:</strong> Revolucionou a época com seus impressionantes gráficos pré-renderizados em 3D!</li>
+                    <li><strong>🎯 Gênero:</strong> Plataforma</li>
+                </ul>
+            </div>
+
+            <button class="btn-play" onclick="startEmulator()">► JOGAR AGORA</button>
+        </div>
     </div>
-  </div>
 
-  <div id="game-container">
-    <div style="width:100%;height:100%;max-width:100%">
-      <div id="game"></div>
+    <div id="game-container">
+        <div style="width:100%;height:100%;max-width:100%">
+            <div id="game"></div>
+        </div>
     </div>
-  </div>
-<script>
-    function startEmulator() {
-      document.getElementById('game-card').style.display = 'none';
-      document.getElementById('game-container').style.display = 'block';
 
-      // Configurações do EmulatorJS otimizadas
-      window.EJS_player = "#game";
-      window.EJS_core = "snes9x"; // Força o núcleo snes9x oficial
-      window.EJS_gameName = "Donkey Kong Country";
-      window.EJS_color = "#e60012";
-      window.EJS_startOnLoaded = true;
-      window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-      
-      // Link direto da ROM do seu repositório
-      window.EJS_gameUrl = "https://grupoplanejar2024-coder.github.io/kubo3D/roms/donkeykong.sfc";
+    <script>
+        function startEmulator() {
+            document.getElementById('game-card').style.display = 'none';
+            document.getElementById('game-container').style.display = 'block';
 
-      let script = document.createElement("script");
-      script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
-      document.body.appendChild(script);
-    }
-  </script>
+            // Configurações do EmulatorJS otimizadas
+            window.EJS_player = "#game";
+            window.EJS_core = "snes9x";
+            window.EJS_gameName = "Donkey Kong Country";
+            window.EJS_color = "#e60012";
+            window.EJS_startOnLoaded = true;
+            window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+
+            // Link direto da ROM no seu repositório
+            window.EJS_gameUrl = "https://grupoplanejar2024-coder.github.io/kubo3D/roms/donkeykong.sfc";
+
+            let script = document.createElement("script");
+            script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+</html>
