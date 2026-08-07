@@ -80,28 +80,23 @@
     </div>
   </div>
 <script>
-    // Configurações Globais
-    window.EJS_player = "#game";
-    window.EJS_core = "snes";
-    window.EJS_gameName = "Donkey Kong Country";
-    window.EJS_color = "#e60012";
-    window.EJS_startOnLoaded = true;
-    
-    // Caminho da pasta de dados do emulador (CDN externo)
-    window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-    
-    // USANDO CAMINHO RELATIVO: Isso força o navegador a buscar no SEU servidor
-    window.EJS_gameUrl = "../roms/donkeykong.sfc";
-
     function startEmulator() {
-      // Oculta o card e mostra o container
       document.getElementById('game-card').style.display = 'none';
       document.getElementById('game-container').style.display = 'block';
 
-      // Adiciona o loader
+      // Configurações do EmulatorJS otimizadas
+      window.EJS_player = "#game";
+      window.EJS_core = "snes9x"; // Força o núcleo snes9x oficial
+      window.EJS_gameName = "Donkey Kong Country";
+      window.EJS_color = "#e60012";
+      window.EJS_startOnLoaded = true;
+      window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+      
+      // Link direto da ROM do seu repositório
+      window.EJS_gameUrl = "https://grupoplanejar2024-coder.github.io/kubo3D/roms/donkeykong.sfc";
+
       let script = document.createElement("script");
       script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
       document.body.appendChild(script);
     }
   </script>
- 
