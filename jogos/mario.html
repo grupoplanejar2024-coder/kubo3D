@@ -82,9 +82,6 @@
     .details li {
       margin-bottom: 6px;
     }
-    .details li:last-child {
-      margin-bottom: 0;
-    }
     .btn-play {
       display: block;
       width: 100%;
@@ -103,12 +100,12 @@
     .btn-play:hover {
       background-color: #ff1a2d;
     }
-    #emulator-container {
+    #game-container {
       display: none;
       width: 100%;
       max-width: 800px;
       height: 600px;
-      margin-top: 20px;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -143,24 +140,30 @@
     </div>
   </div>
 
-  <div id="emulator-container">
-    <iframe id="emulator-frame" src="" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+  <div id="game-container">
+    <div style="width:100%;height:100%;max-width:100%">
+      <div id="game"></div>
+    </div>
   </div>
 
-<script>
+  <script>
     function startEmulator() {
-      // Oculta o card de informações
       document.getElementById('game-card').style.display = 'none';
-      
-      const container = document.getElementById('emulator-container');
-      const iframe = document.getElementById('emulator-frame');
-      
-      // Caminho relativo direto para a ROM dentro da pasta roms
-      const romUrl = window.location.origin + '/kubo3D/roms/mario.sfc';
-      
-      // URL do EmulatorJS
-      iframe.src = "https://emulatorjs.org/embed/#snes&rom=" + encodeURIComponent(romUrl);
-      
-      container.style.display = 'block';
+      document.getElementById('game-container').style.display = 'block';
+
+      EJS_player = "#game";
+      EJS_core = "snes";
+      EJS_gameName = "Super Mario World";
+      EJS_color = "#e60012";
+      EJS_startOnLoaded = true;
+      EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+      EJS_gameUrl = "../roms/mario.sfc";
+
+      let script = document.createElement("script");
+      script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+      document.body.appendChild(script);
     }
   </script>
+
+</body>
+</html>
