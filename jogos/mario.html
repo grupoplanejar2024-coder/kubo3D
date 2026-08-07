@@ -147,21 +147,20 @@
     <iframe id="emulator-frame" src="" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
   </div>
 
-  <script>
+<script>
     function startEmulator() {
       // Oculta o card de informações
       document.getElementById('game-card').style.display = 'none';
       
-      // Carrega o emulador via EmulatorJS apontando para a ROM em ../roms/mario.sfc
       const container = document.getElementById('emulator-container');
       const iframe = document.getElementById('emulator-frame');
       
-      // URL configurada usando o emulador web para SNES
-      iframe.src = "https://emulatorjs.org/embed/#snes&rom=" + encodeURIComponent(window.location.origin + "/roms/mario.sfc");
+      // Caminho relativo direto para a ROM dentro da pasta roms
+      const romUrl = window.location.origin + '/kubo3D/roms/mario.sfc';
+      
+      // URL do EmulatorJS
+      iframe.src = "https://emulatorjs.org/embed/#snes&rom=" + encodeURIComponent(romUrl);
       
       container.style.display = 'block';
     }
   </script>
-
-</body>
-</html>
