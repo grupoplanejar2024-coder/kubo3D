@@ -64,15 +64,23 @@
             document.getElementById('game-container').style.display = 'block';
 
             // Configurações do EmulatorJS
-            window.EJS_player = "#game";
-            window.EJS_core = "snes";
-            window.EJS_gameName = "TMNT IV: Turtles in Time";
-            window.EJS_color = "#27ae60";
-            window.EJS_startOnLoaded = true;
-            window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+           <script>
+    window.EJS_player = "#game";
+    window.EJS_core = "snes";
+    window.EJS_gameName = "TMNT IV: Turtles in Time";
+    window.EJS_color = "#27ae60";
+    window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+    window.EJS_gameUrl = "https://grupoplanejar2024-coder.github.io/kubo3D/roms/tmnt4.sfc";
 
-            // Link direto da ROM no seu repositório
-            window.EJS_gameUrl = "window.EJS_gameUrl = window.EJS_gameUrl = "https://grupoplanejar2024-coder.github.io/kubo3D/roms/tmnt4.sfc";
+    function startEmulator() {
+        document.getElementById("game-card").style.display = "none";
+        document.getElementById("game-container").style.display = "block";
+
+        const script = document.createElement("script");
+        script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+        document.body.appendChild(script);
+    }
+</script>
 
             let script = document.createElement("script");
             script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
