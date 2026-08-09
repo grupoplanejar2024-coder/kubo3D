@@ -2,55 +2,79 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TMNT IV: Turtles in Time</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TMNT IV: Turtles in Time - Kubo Touch</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #121212; color: #fff; font-family: Arial, sans-serif; }
+        header { text-align: center; padding: 15px; background: #1e1e1e; }
+        .badge { background: #27ae60; color: #fff; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 14px; }
+        #game-card { max-width: 500px; margin: 20px auto; background: #1e1e1e; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .cover-container { width: 100%; height: 250px; background-image: url('../imagens/tmnt4-cover.jpg'); background-size: cover; background-position: center; }
+        .content { padding: 20px; }
+        h1 { margin: 0 0 10px 0; font-size: 24px; color: #f1c40f; }
+        .meta-info { display: flex; gap: 10px; margin-bottom: 15px; font-size: 13px; color: #aaa; }
+        .description { font-size: 14px; line-height: 1.5; color: #ddd; margin-bottom: 15px; }
+        .details { font-size: 13px; color: #bbb; margin-bottom: 20px; }
+        .details ul { padding-left: 20px; margin: 0; }
+        .btn-play { display: block; width: 100%; padding: 12px; background: #27ae60; color: #fff; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; text-align: center; }
+        .btn-play:hover { background: #219150; }
+        #game-container { display: none; width: 100%; height: 100vh; }
+    </style>
 </head>
 <body>
 
-    <!-- CARD DO JOGO (COM O ID QUE FALTAVA) -->
-    <div id="game-card" class="card">
-        <div class="meta-info">
-            <span>1-2 Jogadores</span>
-            <span>1992</span>
-            <span>Konami</span>
+    <header>
+        <span class="badge">KUBO TOUCH</span>
+    </header>
+
+    <div class="card" id="game-card">
+        <div class="cover-container"></div>
+        <div class="content">
+            <h1>TMNT IV: Turtles in Time</h1>
+            <div class="meta-info">
+                <span>🎮 1-2 Jogadores</span>
+                <span>📅 1992</span>
+                <span>🏢 Konami</span>
+            </div>
+
+            <p class="description">
+                Junte-se a Leonardo, Raphael, Donatello e Michelangelo em uma viagem através do tempo! Enfrente os soldados do Foot Clan no passado, presente e futuro para derrotar o Destruidor e recuperar a Estátua da Liberdade.
+            </p>
+
+            <div class="details">
+                <ul>
+                    <li><strong>✍️ Curiosidade:</strong> Um dos recursos mais marcantes do jogo é a mecânica de arremessar os soldados do Foot Clan diretamente contra a tela do jogador!</li>
+                    <li><strong>🎯 Gênero:</strong> Beat 'em up / Ação</li>
+                </ul>
+            </div>
+
+            <button class="btn-play" onclick="startEmulator()">► JOGAR AGORA</button>
         </div>
-
-        <p class="description">
-            Junte-se a Leonardo, Raphael, Donatello e Michelangelo em uma viagem através do tempo! Enfrente os soldados do Foot Clan no passado, presente e futuro para derrotar o Destruidor e recuperar a Estátua da Liberdade.
-        </p>
-
-        <div class="details">
-            <ul>
-                <li><strong>🍕 Curiosidade:</strong> Um dos recursos mais marcantes do jogo é a mecânica de arremessar os soldados do Foot Clan diretamente contra a tela do jogador!</li>
-                <li><strong>🎯 Gênero:</strong> Beat 'em up / Ação</li>
-            </ul>
-        </div>
-
-        <button class="btn-play" onclick="startEmulator()">► JOGAR AGORA</button>
     </div>
 
-    <!-- CONTAINER DO EMULADOR (INICIALMENTE ESCONDIDO) -->
-    <div id="game-container" style="display: none;">
+    <div id="game-container">
         <div style="width:100%;height:100%;max-width:100%">
             <div id="game"></div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT ÚNICO E ORGANIZADO -->
     <script>
-        // Configurações do EmulatorJS
-        window.EJS_player = "#game";
-        window.EJS_core = "snes";
-        window.EJS_gameName = "TMNT IV: Turtles in Time";
-        window.EJS_color = "#27ae60";
-        window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-        window.EJS_gameUrl = "https://grupoplanejar2024-coder.github.io/kubo3D/roms/tmnt4.sfc";
-
         function startEmulator() {
-            document.getElementById("game-card").style.display = "none";
-            document.getElementById("game-container").style.display = "block";
+            document.getElementById('game-card').style.display = 'none';
+            document.getElementById('game-container').style.display = 'block';
 
-            const script = document.createElement("script");
+            // Configurações do EmulatorJS
+            window.EJS_player = "#game";
+            window.EJS_core = "snes9x";
+            window.EJS_gameName = "TMNT IV: Turtles in Time";
+            window.EJS_color = "#27ae60";
+            window.EJS_startOnLoaded = true;
+            window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+
+            // Link direto da ROM no seu repositório
+            window.EJS_gameUrl = "https://grupoplanejar2024-coder.github.io/kubo3D/roms/tmnt4.sfc";
+
+            let script = document.createElement("script");
             script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
             document.body.appendChild(script);
         }
