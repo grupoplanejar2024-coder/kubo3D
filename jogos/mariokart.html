@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Super Mario World - Kubo Touch</title>
+    <title>Super Mario Kart - Kubo Touch</title>
     <style>
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #121212; color: #fff; font-family: Arial, sans-serif; }
         header { text-align: center; padding: 15px; background: #1e1e1e; }
         .badge { background: #e74c3c; color: #fff; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 14px; }
         #game-card { max-width: 500px; margin: 20px auto; background: #1e1e1e; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .cover-container { width: 100%; height: 250px; background-image: url('../imagens/mario-cover.jpg'); background-size: cover; background-position: center; }
+        .cover-container { width: 100%; height: 250px; background-image: url('../imagens/mariokart-cover.jpg'); background-size: cover; background-position: center; }
         .content { padding: 20px; }
         h1 { margin: 0 0 10px 0; font-size: 24px; color: #f1c40f; }
         .meta-info { display: flex; gap: 10px; margin-bottom: 15px; font-size: 13px; color: #aaa; }
@@ -30,21 +30,21 @@
     <div class="card" id="game-card">
         <div class="cover-container"></div>
         <div class="content">
-            <h1>Super Mario World</h1>
+            <h1>Super Mario Kart</h1>
             <div class="meta-info">
                 <span>🎮 1-2 Jogadores</span>
-                <span>📅 1990</span>
+                <span>📅 1992</span>
                 <span>🏢 Nintendo</span>
             </div>
 
             <p class="description">
-                Junte-se a Mario e Luigi em uma aventura inesquecível na Dinosaur Land! Explore segredos, descubra saídas secretas e monte no dinossauro Yoshi para resgatar a Princesa Peach das garras de Bowser e dos Koopalinges.
+                O lendário ponto de partida de uma das franquias mais famosas da Nintendo! Escolha entre Mario, Luigi, Peach, Yoshi e outros personagens, use cascos, bananas e cogumelos para desacelerar seus adversários e vença as copas do Mushroom Kingdom!
             </p>
 
             <div class="details">
                 <ul>
-                    <li><strong>✍️ Curiosidade:</strong> Foi o jogo de estreia do mascote Yoshi e um dos maiores sucessos de vendas de todos os tempos no Super Nintendo.</li>
-                    <li><strong>🎯 Gênero:</strong> Plataforma / Aventura</li>
+                    <li><strong>✍️ Curiosidade:</strong> Foi o pioneiro no uso da tecnologia Mode 7 do SNES para simular gráficos em 3D e revolucionou o gênero de corrida arcade.</li>
+                    <li><strong>🎯 Gênero:</strong> Corrida / Kart / Arcade</li>
                 </ul>
             </div>
 
@@ -66,13 +66,13 @@
             // Configurações do EmulatorJS
             window.EJS_player = "#game";
             window.EJS_core = "snes9x";
-            window.EJS_gameName = "Super Mario World";
+            window.EJS_gameName = "Super Mario Kart";
             window.EJS_color = "#e74c3c";
             window.EJS_startOnLoaded = true;
             window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
 
             // Link direto da ROM no seu repositório
-            window.EJS_gameUrl = "https://grupoplanejar2024-coder.github.io/kubo3D/roms/smw.sfc";
+            window.EJS_gameUrl = "https://grupoplanejar2024-coder.github.io/kubo3D/roms/mariokart.sfc";
 
             let script = document.createElement("script");
             script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
