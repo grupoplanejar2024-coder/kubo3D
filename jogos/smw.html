@@ -102,22 +102,22 @@
             container.style.display = 'block';
 
             window.EJS_player = "#game";
-            // Usa o núcleo snes9x2010 otimizado para celulares fracos/médios
-            window.EJS_core = "snes9x2010"; 
+            // Retorna ao núcleo oficial com compatibilidade total
+            window.EJS_core = "snes9x"; 
             window.EJS_gameName = "Super Mario World";
             window.EJS_color = "#e74c3c";
             window.EJS_startOnLoaded = true;
             window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
             window.EJS_gameUrl = "../roms/smw.sfc";
 
-            /* CONFIGURAÇÕES PARA CORRIGIR LAG E SOM */
-            window.EJS_threads = false;               // Evita travamentos de processamento paralelo
-            window.EJS_multiview = false;             // Desativa visualizações simultâneas
-            window.EJS_disableFocusCanvas = true;     // Impede travamentos ao perder o foco da tela
-            window.EJS_smooth = false;                // Melhora o FPS ao remover o filtro de imagem
-            window.EJS_mouse = false;                 // Remove escuta de mouse
+            /* OTIMIZAÇÕES DE PERFORMANCE E ÁUDIO SEM TRAVAMENTOS */
+            window.EJS_threads = false;               // Previne travamentos de concorrência
+            window.EJS_multiview = false;
+            window.EJS_disableFocusCanvas = true;     // Melhora a fluidez da tela
+            window.EJS_smooth = false;                // Remove o filtro pesado e deixa o FPS estável
+            window.EJS_mouse = false;                 // Desativa listeners desnecessários
             
-            // Ajuste de taxa de amostragem de áudio para coincidir com a taxa nativa de celulares
+            // Corrige o engasgo do som sincronizando o buffer
             window.EJS_sampleRate = 44100;
 
             let script = document.createElement("script");
