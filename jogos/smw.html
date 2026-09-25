@@ -63,18 +63,20 @@
         document.getElementById('game-card').style.display = 'none';
         document.getElementById('game-container').style.display = 'block';
 
-        // Configurações do EmulatorJS
+        // Configurações do EmulatorJS otimizadas para Mobile / NFC
         window.EJS_player = "#game";
         window.EJS_core = "snes9x";
         window.EJS_gameName = "Super Mario World";
         window.EJS_color = "#e74c3c";
         window.EJS_startOnLoaded = true;
-        window.EJS_threads = false;
-        window.EJS_disableDatabases = true;
+        window.EJS_threads = false;            // Desativa threads para não travar o telemóvel
+        window.EJS_disableDatabases = true;   // Evita problemas de armazenamento em cache no navegador do telemóvel
 
-        // Caminhos absolutos do repositório para evitar falhas de leitura de subpastas
+        // Aponta para os ficheiros locais do seu repositório usando caminho absoluto
         window.EJS_pathtodata = "/kubo3D/emulatorjs/data/";
-        window.EJS_gameUrl = window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
+        
+        // Link direto da ROM via CDN para evitar erro de rede no telemóvel
+        window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
 
         let script = document.createElement("script");
         script.src = "/kubo3D/emulatorjs/data/loader.js";
