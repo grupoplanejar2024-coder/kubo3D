@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -8,7 +9,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a;
+            background-color: #121212;
             color: #ffffff;
             font-family: Arial, sans-serif;
             display: flex;
@@ -17,11 +18,30 @@
             justify-content: center;
             min-height: 100vh;
         }
-        #game-container {
+        #game-card {
+            text-align: center;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            max-width: 350px;
+        }
+        #game-card img {
             width: 100%;
-            max-width: 800px;
-            height: 450px;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        #game-container {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #000;
             display: none;
+            z-index: 999;
         }
         #game {
             width: 100%;
@@ -31,30 +51,31 @@
             background-color: #e74c3c;
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 18px;
+            padding: 12px 25px;
+            font-size: 16px;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
+            width: 100%;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             transition: background 0.2s;
         }
         .btn-play:hover {
             background-color: #c0392b;
         }
-        #game-card {
-            text-align: center;
-        }
     </style>
 </head>
 <body>
 
+    <!-- CARTÃO DO JOGO COM A CAPA E O BOTÃO -->
     <div id="game-card">
-        <h1>Super Mario World</h1>
-        <p>Toque abaixo para iniciar o jogo pelo Kubo Touch</p>
+        <!-- Substitua abaixo o link da imagem se a sua capa estiver numa pasta específica, ex: ../imagens/smw.jpg -->
+        <img src="../imagens/smw.jpg" alt="Capa Super Mario World">
+        <h2>Super Mario World</h2>
         <button class="btn-play" onclick="startEmulator()">▶ JOGAR AGORA</button>
     </div>
 
+    <!-- CONTENTOR DO EMULADOR -->
     <div id="game-container">
         <div id="game"></div>
     </div>
@@ -66,17 +87,17 @@
 
             // Configurações do EmulatorJS otimizadas para Mobile / NFC
             window.EJS_player = "#game";
-            window.EJS_core = "snes9x2010";         // Core estável e leve para telemóveis
+            window.EJS_core = "snes9x2010";         // Core leve e estável para telemóveis
             window.EJS_gameName = "Super Mario World";
             window.EJS_color = "#e74c3c";
             window.EJS_startOnLoaded = true;
-            window.EJS_threads = false;            // Desativa threads pesadas para evitar travamentos
-            window.EJS_disableDatabases = true;   // Evita problemas de cache no navegador móvel
+            window.EJS_threads = false;            // Desativa threads para evitar travamentos
+            window.EJS_disableDatabases = true;   // Evita erros de cache no navegador móvel
 
-            // Caminho estável oficial do EmulatorJS (Elimina o Network Error)
+            // Caminho da CDN oficial (Elimina o Network Error)
             window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
             
-            // Link direto da ROM hospedada no seu GitHub
+            // Link direto da ROM hospedada no seu repositório GitHub
             window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
 
             let script = document.createElement("script");
