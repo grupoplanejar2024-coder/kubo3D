@@ -91,7 +91,7 @@
         <div id="game"></div>
     </div>
 
-    <script>
+   <script>
     function startEmulator() {
         const header = document.getElementById('main-header');
         const card = document.getElementById('game-card');
@@ -103,15 +103,17 @@
 
         window.EJS_player = "#game";
         
-        // APONTA PARA O SEU CORE LOCAL QUE ESTÁ NA PASTA DA IMAGEM
+        // Utiliza o core snes9x que está na sua pasta do GitHub
         window.EJS_core = "snes9x"; 
         
         window.EJS_gameName = "Super Mario World";
         window.EJS_color = "#e74c3c";
         window.EJS_startOnLoaded = true;
 
-        // Caminhos locais absolutos para ler diretamente da sua estrutura do GitHub
-        window.EJS_pathtodata = "/kubo3D/emulatorjs/data/";
+        // Caminhos relativos corretos (a partir da pasta 'jogos/', volta uma casa e entra em emulatorjs/data)
+        window.EJS_pathtodata = "../emulatorjs/data/";
+        
+        // ROM carregada via CDN do jsDelivr para evitar falhas e travamentos nos telemóveis dos clientes
         window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
 
         /* OTIMIZAÇÕES MÁXIMAS PARA O TELEMÓVEL DOS CLIENTES NÃO TRAVAREM */
@@ -123,7 +125,7 @@
         window.EJS_samplerate = 44100;        // Sincroniza o áudio sem estalos
 
         let script = document.createElement("script");
-        script.src = "/kubo3D/emulatorjs/data/loader.js";
+        script.src = "../emulatorjs/data/loader.js";
         script.async = true;
         document.body.appendChild(script);
     }
