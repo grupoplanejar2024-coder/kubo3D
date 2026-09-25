@@ -1,87 +1,89 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Super Mario World - Kubo Touch</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #121212; color: #fff; font-family: Arial, sans-serif; }
-        header { text-align: center; padding: 15px; background: #1e1e1e; }
-        .badge { background: #e74c3c; color: #fff; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 14px; }
-        #game-card { max-width: 500px; margin: 20px auto; background: #1e1e1e; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .cover-container { width: 100%; height: 250px; background-image: url('../imagens/mario-cover.jpg'); background-size: cover; background-position: center; }
-        .content { padding: 20px; }
-        h1 { margin: 0 0 10px 0; font-size: 24px; color: #f1c40f; }
-        .meta-info { display: flex; gap: 10px; margin-bottom: 15px; font-size: 13px; color: #aaa; }
-        .description { font-size: 14px; line-height: 1.5; color: #ddd; margin-bottom: 15px; }
-        .details { font-size: 13px; color: #bbb; margin-bottom: 20px; }
-        .details ul { padding-left: 20px; margin: 0; }
-        .btn-play { display: block; width: 100%; padding: 12px; background: #27ae60; color: #fff; border: none; border-radius: 6px; font-weight: bold; font-size: 16px; cursor: pointer; text-align: center; }
-        .btn-play:hover { background: #219150; }
-        #game-container { display: none; width: 100%; height: 100vh; }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        #game-container {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            display: none;
+        }
+        #game {
+            width: 100%;
+            height: 100%;
+        }
+        .btn-play {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: background 0.2s;
+        }
+        .btn-play:hover {
+            background-color: #c0392b;
+        }
+        #game-card {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <span class="badge">KUBO TOUCH</span>
-    </header>
-
-    <div class="card" id="game-card">
-        <div class="cover-container"></div>
-        <div class="content">
-            <h1>Super Mario World</h1>
-            <div class="meta-info">
-                <span>🎮 1-2 Jogadores</span>
-                <span>📅 1990</span>
-                <span>🏢 Nintendo</span>
-            </div>
-
-            <p class="description">
-                Junte-se a Mario e Luigi em uma aventura inesquecível na Dinosaur Land! Explore segredos, descubra saídas secretas e monte no dinossauro Yoshi para resgatar a Princesa Peach das garras de Bowser e dos Koopalinges.
-            </p>
-
-            <div class="details">
-                <ul>
-                    <li><strong>✍️ Curiosidade:</strong> Foi o jogo de estreia do mascote Yoshi e um dos maiores sucessos de vendas de todos os tempos no Super Nintendo.</li>
-                    <li><strong>🎯 Gênero:</strong> Plataforma / Aventura</li>
-                </ul>
-            </div>
-
-            <button class="btn-play" onclick="startEmulator()">► JOGAR AGORA</button>
-        </div>
+    <div id="game-card">
+        <h1>Super Mario World</h1>
+        <p>Toque abaixo para iniciar o jogo pelo Kubo Touch</p>
+        <button class="btn-play" onclick="startEmulator()">▶ JOGAR AGORA</button>
     </div>
 
     <div id="game-container">
-        <div style="width:100%;height:100%;max-width:100%">
-            <div id="game"></div>
-        </div>
+        <div id="game"></div>
     </div>
 
-<script>
-    function startEmulator() {
-        document.getElementById('game-card').style.display = 'none';
-        document.getElementById('game-container').style.display = 'block';
+    <script>
+        function startEmulator() {
+            document.getElementById('game-card').style.display = 'none';
+            document.getElementById('game-container').style.display = 'block';
 
-        // Configurações do EmulatorJS otimizadas para Mobile / NFC
-        window.EJS_player = "#game";
-        window.EJS_core = "snes9x";
-        window.EJS_gameName = "Super Mario World";
-        window.EJS_color = "#e74c3c";
-        window.EJS_startOnLoaded = true;
-        window.EJS_threads = false;            // Desativa threads para não travar o telemóvel
-        window.EJS_disableDatabases = true;   // Evita problemas de armazenamento em cache no navegador do telemóvel
+            // Configurações do EmulatorJS otimizadas para Mobile / NFC
+            window.EJS_player = "#game";
+            window.EJS_core = "snes9x2010";         // Core estável e leve para telemóveis
+            window.EJS_gameName = "Super Mario World";
+            window.EJS_color = "#e74c3c";
+            window.EJS_startOnLoaded = true;
+            window.EJS_threads = false;            // Desativa threads pesadas para evitar travamentos
+            window.EJS_disableDatabases = true;   // Evita problemas de cache no navegador móvel
 
-        // Aponta para os ficheiros locais do seu repositório usando caminho absoluto
-        window.EJS_pathtodata = "/kubo3D/emulatorjs/data/";
-        
-        // Link direto da ROM via CDN para evitar erro de rede no telemóvel
-        window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
+            // Caminho estável oficial do EmulatorJS (Elimina o Network Error)
+            window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+            
+            // Link direto da ROM hospedada no seu GitHub
+            window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
 
-        let script = document.createElement("script");
-        script.src = "/kubo3D/emulatorjs/data/loader.js";
-        document.body.appendChild(script);
-    }
-</script>
+            let script = document.createElement("script");
+            script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+            document.body.appendChild(script);
+        }
+    </script>
+
 </body>
 </html>
