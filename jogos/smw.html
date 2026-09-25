@@ -99,40 +99,35 @@
         if (card) card.style.display = 'none';
         if (container) container.style.display = 'block';
 
-        /* CONFIGURAÇÃO DO EMULADOR */
+        /* CONFIGURAÇÃO DO EMULADOR (LOCAL) */
         window.EJS_player = "#game";
-        window.EJS_core = "snes9x2010"; // Usar o núcleo mais leve
+        window.EJS_core = "snes9x"; 
         window.EJS_gameName = "Super Mario World";
         window.EJS_color = "#e74c3c";
         window.EJS_startOnLoaded = true;
 
-        /* LINK DIRETO DA ROM DO GITHUB */
+        /* CAMINHO DOS ARQUIVOS E DA ROM */
+        window.EJS_pathtodata = "../emulatorjs/data/";
         window.EJS_gameUrl = "https://raw.githubusercontent.com/grupoplanejar2024-coder/kubo3D/main/roms/smw.sfc";
 
-        /* FORÇAR USO EXCLUSIVO DO CDN OFICIAL (Evita procurar arquivos locais no seu GitHub) */
-        window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-        window.EJS_paths = {
-            "snes9x2010": "https://cdn.emulatorjs.org/stable/data/cores/snes9x2010.json"
-        };
-
-        /* OTIMIZAÇÕES PARA CELULAR (SEM TRAVAR / SEM SOM ESTOURADO) */
-        window.EJS_webgl = true;
-        window.EJS_threads = false; // DESATIVA THREADS QUE CAUSAM O SOM ESTOURADO
+        /* CHAVE DO SUCESSO PARA CELULARES FRACOS / QUALQUER CELULAR */
+        window.EJS_threads = false;              // OBRIGATÓRIO: Desativa travamentos e som estourado
+        window.EJS_webgl = true;                // Usa aceleração gráfica do celular
         window.EJS_multiview = false;
         window.EJS_disableFocusCanvas = true;
-        window.EJS_smooth = false;
+        window.EJS_smooth = false;               // Remove filtros pesados da tela (ganha muito FPS)
         window.EJS_mouse = false;
 
-        /* CONFIGURAÇÃO DE ÁUDIO */
+        /* CONFIGURAÇÕES DE ÁUDIO */
         window.EJS_Volume = 0.8;
         window.EJS_Settings = {
             sound: true,
             fps: false
         };
 
-        /* CARREGA O LOADER OFICIAL */
+        /* CARREGA O LOADER LOCAL DO SEU REPOSITÓRIO */
         let script = document.createElement("script");
-        script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+        script.src = "../emulatorjs/data/loader.js";
         script.async = true;
         document.body.appendChild(script);
     }
