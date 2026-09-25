@@ -18,14 +18,23 @@
             background-color: #121212; 
             color: #fff; 
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-            overflow: hidden; 
+            overflow-x: hidden;
             user-select: none;
             -webkit-user-select: none;
         }
         header { text-align: center; padding: 15px; background: #1e1e1e; border-bottom: 2px solid #333; }
         .badge { background: #e74c3c; color: #fff; padding: 4px 14px; border-radius: 20px; font-weight: bold; font-size: 14px; letter-spacing: 1px; }
         #game-card { max-width: 500px; margin: 20px auto; background: #1e1e1e; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .cover-container { width: 100%; height: 260px; background-image: url('supermarioworld-cover.jpg'); background-size: cover; background-position: center; }
+        
+        /* Capa via link web direto para garantir carregamento */
+        .cover-container { 
+            width: 100%; 
+            height: 260px; 
+            background-image: url('https://raw.githubusercontent.com/grupoplanejar2024-coder/kubo3D/main/jogos/supermarioworld-cover.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+        }
+        
         .content { padding: 20px; }
         h1 { margin: 0 0 10px 0; font-size: 24px; color: #2ecc71; }
         .meta-info { display: flex; gap: 12px; margin-bottom: 15px; font-size: 13px; color: #aaa; flex-wrap: wrap; }
@@ -34,7 +43,6 @@
         .details ul { padding-left: 20px; margin: 0; }
         .btn-play { display: block; width: 100%; padding: 14px; background: #e74c3c; color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; text-align: center; }
         
-        /* Container do jogo em tela cheia otimizado */
         #game-container { 
             display: none; 
             width: 100vw; 
@@ -85,7 +93,7 @@
 
     <script>
         function startEmulator() {
-            // Remove os elementos da interface do DOM para libertar memória RAM no telemóvel
+            // Remove a interface inicial para economizar RAM no celular
             const header = document.getElementById('main-header');
             const card = document.getElementById('game-card');
             if (header) header.remove();
@@ -94,7 +102,6 @@
             const container = document.getElementById('game-container');
             container.style.display = 'block';
 
-            // Parâmetros principais de emulação
             window.EJS_player = "#game";
             window.EJS_core = "snes9x";
             window.EJS_gameName = "Super Mario World";
@@ -102,16 +109,15 @@
             window.EJS_startOnLoaded = true;
             window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
             
-            // Link direto para a ROM no repositório GitHub
-            window.EJS_gameUrl = "https://raw.githubusercontent.com/SEU-USUARIO/kubo-supermarioworld/main/supermarioworld.sfc";
+            // LINK CORRIGIDO APONTANDO PARA O SEU REPOSITÓRIO E PASTA JOGOS
+            window.EJS_gameUrl = "https://raw.githubusercontent.com/grupoplanejar2024-coder/kubo3D/main/jogos/smw.sfc";
 
-            // OTIMIZAÇÕES DE DESEMPENHO PARA DISPOSITIVOS FRACOS
-            window.EJS_threads = false;               // Desativa multi-threading para evitar engasgos em CPUs de baixo custo
-            window.EJS_multiview = false;            // Desativa funções de vídeo secundárias
-            window.EJS_disableFocusCanvas = true;     // Impede perda de frames quando a tela é tocada
-            window.EJS_smooth = false;                // Desativa filtros de suavização de imagem para reduzir uso de GPU
+            // Otimizações para celulares de entrada
+            window.EJS_threads = false;
+            window.EJS_multiview = false;
+            window.EJS_disableFocusCanvas = true;
+            window.EJS_smooth = false;
 
-            // Carrega o emulador de forma assíncrona
             let script = document.createElement("script");
             script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
             script.async = true;
