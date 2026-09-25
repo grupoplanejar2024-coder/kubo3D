@@ -93,33 +93,31 @@
 
 <script>
     function startEmulator() {
-        // Esconde o cartão do jogo e mostra o contentor do emulador de forma limpa
         const card = document.getElementById('game-card');
         const container = document.getElementById('game-container');
         
         if (card) card.style.display = 'none';
         if (container) container.style.display = 'block';
 
-        // Configurações do EmulatorJS otimizadas para telemóveis
         window.EJS_player = "#game";
         window.EJS_core = "snes9x";
         window.EJS_gameName = "Super Mario World";
         window.EJS_color = "#e74c3c";
         window.EJS_startOnLoaded = true;
 
-        // CDN Oficial do EmulatorJS (Elimina permanentemente o Network Error)
         window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-        
-        // ROM carregada via jsDelivr CDN para leitura rápida e estável via NFC nos telemóveis
         window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
 
-        /* OTIMIZAÇÕES MÁXIMAS PARA O TELEMÓVEL DOS CLIENTES NÃO TRAVAREM */
-        window.EJS_threads = false;           // Desativa múltiplos núcleos para computadores fracos/telemóveis
+        /* OTIMIZAÇÕES MÁXIMAS DE PERFORMANCE E ÁUDIO */
+        window.EJS_threads = false;
         window.EJS_multiview = false;
-        window.EJS_disableFocusCanvas = true; // Melhora a fluidez gráfica
-        window.EJS_smooth = false;            // Remove filtros pesados e estabiliza os FPS
-        window.EJS_mouse = false;             
-        window.EJS_samplerate = 44100;        // Sincroniza o áudio sem estalos
+        window.EJS_disableFocusCanvas = true;
+        window.EJS_smooth = false;
+        window.EJS_mouse = false;
+
+        /* CORREÇÃO DO ÁUDIO ESTOURADO/CHIADO */
+        window.EJS_samplerate = 22050;        // Taxa nativa do SNES (evita estourar o som no telemóvel)
+        window.EJS_volume = 0.8;              // Define o volume inicial a 80% para evitar distorção
 
         let script = document.createElement("script");
         script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
