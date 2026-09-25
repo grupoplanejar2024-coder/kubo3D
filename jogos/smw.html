@@ -106,18 +106,18 @@
         window.EJS_color = "#e74c3c";
         window.EJS_startOnLoaded = true;
 
-        /* SERVIDOR CDN OFICIAL (Elimina o 'Network Error') */
-        window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-        
-        /* LINK DA ROM NO SEU GITHUB */
-        window.EJS_gameUrl = "https://raw.githubusercontent.com/grupoplanejar2024-coder/kubo3D/main/roms/smw.sfc";
+        /* CAMINHO RELATIVO DA ROM (Evita bloqueio de CORS / Network Error no celular) */
+        window.EJS_gameUrl = "../roms/smw.sfc";
 
-        /* CONFIGURAÇÕES PARA NÃO TRAVAR E NÃO ESTOURAR O SOM NO CELULAR */
-        window.EJS_threads = false;             // DESATIVA MULTITHREAD (Resolve áudio estourado)
-        window.EJS_webgl = true;               // Usa a GPU do celular
+        /* SERVIDOR CDN OFICIAL */
+        window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+
+        /* CONFIGURAÇÕES DE DESEMPENHO PARA CELULARES FRACOS */
+        window.EJS_threads = false;             // CORRIGE ÁUDIO ESTOURADO E TRAVAMENTOS
+        window.EJS_webgl = true;               // Usa GPU do celular
         window.EJS_multiview = false;
         window.EJS_disableFocusCanvas = true;
-        window.EJS_smooth = false;              // Ganha FPS em celulares fracos
+        window.EJS_smooth = false;              // Melhora os quadros por segundo (FPS)
         window.EJS_mouse = false;
 
         /* AJUSTE DE ÁUDIO */
@@ -127,7 +127,7 @@
             fps: false
         };
 
-        /* CARREGA O LOADER GLOBAL */
+        /* CARREGAMENTO DO LOADER */
         let script = document.createElement("script");
         script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
         script.async = true;
