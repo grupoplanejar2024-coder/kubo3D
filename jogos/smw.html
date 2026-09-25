@@ -65,19 +65,19 @@
 
         // Configurações do EmulatorJS
         window.EJS_player = "#game";
-        window.EJS_core = "snes9x"; // Usa os ficheiros do snes9x que estão na sua pasta data
+        window.EJS_core = "snes9x";
         window.EJS_gameName = "Super Mario World";
         window.EJS_color = "#e74c3c";
         window.EJS_startOnLoaded = true;
         window.EJS_threads = false;
         window.EJS_disableDatabases = true;
 
-        // Caminhos para os ficheiros locais e a ROM no seu repositório
-        window.EJS_pathtodata = "../emulatorjs/data/";
-        window.EJS_gameUrl = "../roms/smw.sfc";
+        // Caminhos absolutos do repositório para evitar falhas de leitura de subpastas
+        window.EJS_pathtodata = "/kubo3D/emulatorjs/data/";
+        window.EJS_gameUrl = "/kubo3D/roms/smw.sfc";
 
         let script = document.createElement("script");
-        script.src = "../emulatorjs/data/loader.js";
+        script.src = "/kubo3D/emulatorjs/data/loader.js";
         document.body.appendChild(script);
     }
 </script>
