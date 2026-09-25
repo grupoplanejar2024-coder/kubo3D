@@ -92,41 +92,39 @@
     </div>
 
    <script>
-    function startEmulator() {
-        const header = document.getElementById('main-header');
-        const card = document.getElementById('game-card');
-        if (header) header.remove();
-        if (card) card.remove();
+function startEmulator() {
+            const header = document.getElementById('main-header');
+            const card = document.getElementById('game-card');
+            if (header) header.remove();
+            if (card) card.remove();
 
-        const container = document.getElementById('game-container');
-        container.style.display = 'block';
+            const container = document.getElementById('game-container');
+            container.style.display = 'block';
 
-        window.EJS_player = "#game";
-        
-        // Utiliza o core snes9x que está na sua pasta do GitHub
-        window.EJS_core = "snes9x"; 
-        
-        window.EJS_gameName = "Super Mario World";
-        window.EJS_color = "#e74c3c";
-        window.EJS_startOnLoaded = true;
+            window.EJS_player = "#game";
+            window.EJS_core = "snes9x"; 
+            window.EJS_gameName = "Super Mario World";
+            window.EJS_color = "#e74c3c";
+            window.EJS_startOnLoaded = true;
 
-        // Caminhos relativos corretos (a partir da pasta 'jogos/', volta uma casa e entra em emulatorjs/data)
-        window.EJS_pathtodata = "../emulatorjs/data/";
-        
-        // ROM carregada via CDN do jsDelivr para evitar falhas e travamentos nos telemóveis dos clientes
-        window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
+            // CDN Oficial do EmulatorJS (Elimina permanentemente o Network Error)
+            window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+            
+            // ROM carregada via jsDelivr CDN para leitura rápida e estável via NFC no telemóvel
+            window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
 
-        /* OTIMIZAÇÕES MÁXIMAS PARA O TELEMÓVEL DOS CLIENTES NÃO TRAVAREM */
-        window.EJS_threads = false;           // Desativa múltiplos núcleos para não sobrecarregar o telemóvel
-        window.EJS_multiview = false;
-        window.EJS_disableFocusCanvas = true; // Melhora a fluidez gráfica
-        window.EJS_smooth = false;            // Remove filtros pesados e estabiliza os FPS
-        window.EJS_mouse = false;             
-        window.EJS_samplerate = 44100;        // Sincroniza o áudio sem estalos
+            /* OTIMIZAÇÕES MÁXIMAS PARA O TELEMÓVEL DOS CLIENTES NÃO TRAVAREM */
+            window.EJS_threads = false;           // Desativa múltiplos núcleos para computadores fracos/telemóveis
+            window.EJS_multiview = false;
+            window.EJS_disableFocusCanvas = true; // Melhora a fluidez gráfica
+            window.EJS_smooth = false;            // Remove filtros pesados e estabiliza os FPS
+            window.EJS_mouse = false;             
+            window.EJS_samplerate = 44100;        // Sincroniza o áudio sem estalos
 
-        let script = document.createElement("script");
-        script.src = "../emulatorjs/data/loader.js";
-        script.async = true;
-        document.body.appendChild(script);
+            let script = document.createElement("script");
+            script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+            script.async = true;
+            document.body.appendChild(script);
+        }
     }
 </script>
