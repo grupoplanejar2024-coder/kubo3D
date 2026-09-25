@@ -92,7 +92,7 @@
     </div>
 
     <script>
-        function startEmulator() {
+    function startEmulator() {
             const header = document.getElementById('main-header');
             const card = document.getElementById('game-card');
             if (header) header.remove();
@@ -102,23 +102,27 @@
             container.style.display = 'block';
 
             window.EJS_player = "#game";
-            // Retorna ao núcleo oficial com compatibilidade total
-            window.EJS_core = "snes9x"; 
+            
+            // ALTERAÇÃO 1: Usar o core leve para telemóvel (evita travamentos)
+            window.EJS_core = "snes9x2010"; 
+            
             window.EJS_gameName = "Super Mario World";
             window.EJS_color = "#e74c3c";
             window.EJS_startOnLoaded = true;
             window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-            window.EJS_gameUrl = "../roms/smw.sfc";
+            
+            // ALTERAÇÃO 2: Usar link direto da CDN para a ROM (evita Network Error no telemóvel)
+            window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
 
             /* OTIMIZAÇÕES DE PERFORMANCE E ÁUDIO SEM TRAVAMENTOS */
-            window.EJS_threads = false;               // Previne travamentos de concorrência
+            window.EJS_threads = false;           // Previne travamentos de concorrência
             window.EJS_multiview = false;
-            window.EJS_disableFocusCanvas = true;     // Melhora a fluidez da tela
-            window.EJS_smooth = false;                // Remove o filtro pesado e deixa o FPS estável
-            window.EJS_mouse = false;                 // Desativa listeners desnecessários
-            
+            window.EJS_disableFocusCanvas = true; // Melhora a fluidez da tela
+            window.EJS_smooth = false;            // Remove o filtro pesado e deixa o FPS estável
+            window.EJS_mouse = false;             // Desativa listeners desnecessários
+
             // Corrige o engasgo do som sincronizando o buffer
-            window.EJS_sampleRate = 44100;
+            window.EJS_samplerate = 44100;
 
             let script = document.createElement("script");
             script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
