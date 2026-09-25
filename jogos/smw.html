@@ -1,110 +1,122 @@
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Super Mario World - Kubo Touch</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #121212;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+        * { 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent; 
+            touch-action: manipulation; 
         }
-        #game-card {
-            text-align: center;
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            max-width: 350px;
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: #121212; 
+            color: #fff; 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            overflow: hidden; 
+            user-select: none;
+            -webkit-user-select: none;
         }
-        #game-card img {
-            width: 100%;
-            max-height: 300px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
+        header { text-align: center; padding: 15px; background: #1e1e1e; border-bottom: 2px solid #333; }
+        .badge { background: #e74c3c; color: #fff; padding: 4px 14px; border-radius: 20px; font-weight: bold; font-size: 14px; letter-spacing: 1px; }
+        #game-card { max-width: 500px; margin: 20px auto; background: #1e1e1e; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .cover-container { width: 100%; height: 260px; background-image: url('supermarioworld-cover.jpg'); background-size: cover; background-position: center; }
+        .content { padding: 20px; }
+        h1 { margin: 0 0 10px 0; font-size: 24px; color: #2ecc71; }
+        .meta-info { display: flex; gap: 12px; margin-bottom: 15px; font-size: 13px; color: #aaa; flex-wrap: wrap; }
+        .description { font-size: 14px; line-height: 1.5; color: #ddd; margin-bottom: 15px; }
+        .details { font-size: 13px; color: #bbb; margin-bottom: 20px; }
+        .details ul { padding-left: 20px; margin: 0; }
+        .btn-play { display: block; width: 100%; padding: 14px; background: #e74c3c; color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; text-align: center; }
+        
+        /* Container do jogo em tela cheia otimizado */
+        #game-container { 
+            display: none; 
+            width: 100vw; 
+            height: 100vh; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            z-index: 99999; 
+            background: #000; 
         }
-        #game-container {
-            width: 100vw;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: #000;
-            display: none;
-            z-index: 999;
-        }
-        #game {
-            width: 100%;
-            height: 100%;
-        }
-        .btn-play {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            transition: background 0.2s;
-        }
-        .btn-play:hover {
-            background-color: #c0392b;
-        }
+        #game { width: 100%; height: 100%; }
     </style>
 </head>
 <body>
 
-    <!-- CARTÃO DO JOGO COM A CAPA E O BOTÃO -->
+    <header id="main-header">
+        <span class="badge">KUBO TOUCH</span>
+    </header>
+
     <div id="game-card">
-        <!-- Substitua abaixo o link da imagem se a sua capa estiver numa pasta específica, ex: ../imagens/smw.jpg -->
-        <img src="../imagens/smw.jpg" alt="Capa Super Mario World">
-        <h2>Super Mario World</h2>
-        <button class="btn-play" onclick="startEmulator()">▶ JOGAR AGORA</button>
+        <div class="cover-container"></div>
+        <div class="content">
+            <h1>Super Mario World</h1>
+            <div class="meta-info">
+                <span>🎮 1-2 Jogadores</span>
+                <span>📅 1990</span>
+                <span>🏢 Nintendo</span>
+            </div>
+
+            <p class="description">
+                Junte-se a Mario e Luigi na lendária jornada pela Dinosaur Land para resgatar a Princesa Peach e derrotar o malvado Bowser!
+            </p>
+
+            <div class="details">
+                <ul>
+                    <li><strong>🎯 Gênero:</strong> Plataforma / Aventura</li>
+                    <li><strong>🕹️ Plataforma:</strong> Super Nintendo (SNES)</li>
+                </ul>
+            </div>
+
+            <button class="btn-play" onclick="startEmulator()">► JOGAR AGORA</button>
+        </div>
     </div>
 
-    <!-- CONTENTOR DO EMULADOR -->
     <div id="game-container">
         <div id="game"></div>
     </div>
 
     <script>
         function startEmulator() {
-            document.getElementById('game-card').style.display = 'none';
-            document.getElementById('game-container').style.display = 'block';
+            // Remove os elementos da interface do DOM para libertar memória RAM no telemóvel
+            const header = document.getElementById('main-header');
+            const card = document.getElementById('game-card');
+            if (header) header.remove();
+            if (card) card.remove();
 
-            // Configurações do EmulatorJS otimizadas para Mobile / NFC
+            const container = document.getElementById('game-container');
+            container.style.display = 'block';
+
+            // Parâmetros principais de emulação
             window.EJS_player = "#game";
-            window.EJS_core = "snes9x2010";         // Core leve e estável para telemóveis
+            window.EJS_core = "snes9x";
             window.EJS_gameName = "Super Mario World";
             window.EJS_color = "#e74c3c";
             window.EJS_startOnLoaded = true;
-            window.EJS_threads = false;            // Desativa threads para evitar travamentos
-            window.EJS_disableDatabases = true;   // Evita erros de cache no navegador móvel
-
-            // Caminho da CDN oficial (Elimina o Network Error)
             window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
             
-            // Link direto da ROM hospedada no seu repositório GitHub
-            window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
+            // Link direto para a ROM no repositório GitHub
+            window.EJS_gameUrl = "https://raw.githubusercontent.com/SEU-USUARIO/kubo-supermarioworld/main/supermarioworld.sfc";
 
+            // OTIMIZAÇÕES DE DESEMPENHO PARA DISPOSITIVOS FRACOS
+            window.EJS_threads = false;               // Desativa multi-threading para evitar engasgos em CPUs de baixo custo
+            window.EJS_multiview = false;            // Desativa funções de vídeo secundárias
+            window.EJS_disableFocusCanvas = true;     // Impede perda de frames quando a tela é tocada
+            window.EJS_smooth = false;                // Desativa filtros de suavização de imagem para reduzir uso de GPU
+
+            // Carrega o emulador de forma assíncrona
             let script = document.createElement("script");
             script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+            script.async = true;
             document.body.appendChild(script);
         }
     </script>
-
 </body>
 </html>
