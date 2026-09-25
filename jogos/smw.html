@@ -26,13 +26,14 @@
         .badge { background: #e74c3c; color: #fff; padding: 4px 14px; border-radius: 20px; font-weight: bold; font-size: 14px; letter-spacing: 1px; }
         #game-card { max-width: 500px; margin: 20px auto; background: #1e1e1e; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
         
-        /* Apontando para a pasta imagens/ no seu repositório */
+        /* CAMINHO RELATIVO: Sobe da pasta 'jogos' para a raiz e entra na pasta 'imagens' */
         .cover-container { 
             width: 100%; 
             height: 260px; 
-            background-image: url('https://raw.githubusercontent.com/grupoplanejar2024-coder/kubo3D/main/imagens/smw.jpg'); 
+            background-image: url('../imagens/supermarioworld-cover.jpg'); 
             background-size: cover; 
             background-position: center; 
+            background-repeat: no-repeat;
         }
         
         .content { padding: 20px; }
@@ -108,10 +109,10 @@
             window.EJS_startOnLoaded = true;
             window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
             
-            // Apontando diretamente para a pasta roms/ no seu repositório
-            window.EJS_gameUrl = "https://raw.githubusercontent.com/grupoplanejar2024-coder/kubo3D/main/roms/smw.sfc";
+            // Caminho relativo para encontrar a ROM na pasta roms
+            window.EJS_gameUrl = "../roms/smw.sfc";
 
-            // Otimizações para rodar sem travar em telemóveis
+            // Otimizações de desempenho
             window.EJS_threads = false;
             window.EJS_multiview = false;
             window.EJS_disableFocusCanvas = true;
