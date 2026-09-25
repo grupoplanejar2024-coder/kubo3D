@@ -95,37 +95,39 @@
     function startEmulator() {
         const card = document.getElementById('game-card');
         const container = document.getElementById('game-container');
-        
+
         if (card) card.style.display = 'none';
         if (container) container.style.display = 'block';
 
-        /* CONFIGURAÇÃO DE ALTA COMPATIBILIDADE MÓVEL */
+        /* 1. NÚCLEO LEVE E COMPATÍVEL COM TELEMÓVEIS (Baixado do CDN automaticamente) */
         window.EJS_player = "#game";
-        window.EJS_core = "snes9x";
+        window.EJS_core = "snes9x2010"; // Core otimizada para processadores mobile
         window.EJS_gameName = "Super Mario World";
         window.EJS_color = "#e74c3c";
         window.EJS_startOnLoaded = true;
 
-        /* FONTES DIRECTAS DE CARREGAMENTO */
-        window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-        window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
+        /* 2. LINK DIRETO DA ROM (RAW DO GITHUB) */
+        window.EJS_gameUrl = "https://raw.githubusercontent.com/grupoplanejar2024-coder/kubo3D/main/roms/smw.sfc";
 
-        /* DESATIVAÇÃO DE RECURSOS PESADOS DE CPU/GPU DO CELULAR */
-        window.EJS_threads = false;              
+        /* 3. SERVIDOR OFICIAL DO EMULATORJS (CDN PUBLICO) */
+        window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+
+        /* 4. OTIMIZAÇÕES DE PERFORMANCE E GPU PARA NÃO TRAVAR */
+        window.EJS_webgl = true;               // Usa a GPU do telemóvel
+        window.EJS_threads = false;             // DESATIVA THREADS INSTÁVEIS (corrige áudio estourado)
         window.EJS_multiview = false;
-        window.EJS_disableFocusCanvas = true;    
-        window.EJS_smooth = false;               
+        window.EJS_disableFocusCanvas = true;
+        window.EJS_smooth = false;              // Desativa filtro pesado
         window.EJS_mouse = false;
 
-        /* CORREÇÃO DEFINITIVA DO ÁUDIO PARA TELEMÓVEIS */
-        // Força o navegador a utilizar o buffer de áudio nativo sem reamostrar
-        window.EJS_Volume = 0.5;                 // Volume a 50% reduz drasticamente a distorção no chip de som
+        /* 5. CONFIGURAÇÃO DE ÁUDIO */
+        window.EJS_Volume = 0.8;
         window.EJS_Settings = {
             sound: true,
-            volume: 0.5,
             fps: false
         };
 
+        /* CARREGAMENTO DO LOADER DO CDN */
         let script = document.createElement("script");
         script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
         script.async = true;
