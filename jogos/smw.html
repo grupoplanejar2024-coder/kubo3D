@@ -58,23 +58,26 @@
         </div>
     </div>
 
-    <script>
+  <script>
         function startEmulator() {
             document.getElementById('game-card').style.display = 'none';
             document.getElementById('game-container').style.display = 'block';
 
-            // Configurações do EmulatorJS
+            // Configurações do EmulatorJS otimizadas para Celular
             window.EJS_player = "#game";
-            window.EJS_core = "snes9x";
+            window.EJS_core = "snes9x2010"; // Core mais leve
             window.EJS_gameName = "Super Mario World";
             window.EJS_color = "#e74c3c";
             window.EJS_startOnLoaded = true;
-            window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+            window.EJS_threads = false; // Desativa multithreading pesado
+            window.EJS_disableDatabases = true; // Evita gargalos de armazenamento
 
-            // Link direto da ROM no seu repositório
-            window.EJS_gameUrl = window.EJS_gameUrl = "https://raw.githubusercontent.com/grupoplanejar2024-coder/kubo3D/main/roms/smw.sfc";
+            // Ficheiros locais e ROM via CDN do jsDelivr
+            window.EJS_pathtodata = "../emulatorjs/data/";
+            window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
+
             let script = document.createElement("script");
-            script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+            script.src = "../emulatorjs/data/loader.js";
             document.body.appendChild(script);
         }
     </script>
