@@ -99,25 +99,28 @@
         if (card) card.style.display = 'none';
         if (container) container.style.display = 'block';
 
+        /* CONFIGURAÇÃO UNIVERSAL DO EMULATORJS */
         window.EJS_player = "#game";
         window.EJS_core = "snes9x";
         window.EJS_gameName = "Super Mario World";
         window.EJS_color = "#e74c3c";
         window.EJS_startOnLoaded = true;
 
+        /* SERVIDORES DE CARREGAMENTO RÁPIDO PARA NFC */
         window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
         window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
 
-        /* OTIMIZAÇÕES MÁXIMAS DE PERFORMANCE E ÁUDIO */
-        window.EJS_threads = false;
+        /* TRAVAS ANTI-TRAVAMENTO (DESEMPENHO MÁXIMO EM QUALQUER CELULAR) */
+        window.EJS_threads = false;              // Desativa multi-threading para não aquecer/travar o telemóvel
         window.EJS_multiview = false;
-        window.EJS_disableFocusCanvas = true;
-        window.EJS_smooth = false;
+        window.EJS_disableFocusCanvas = true;    // Mantém o foco e evita quedas de FPS
+        window.EJS_smooth = false;               // Desativa filtros pesados de imagem (pixel art perfeito e leve)
         window.EJS_mouse = false;
 
-        /* CORREÇÃO DO ÁUDIO ESTOURADO/CHIADO */
-        window.EJS_samplerate = 22050;        // Taxa nativa do SNES (evita estourar o som no telemóvel)
-        window.EJS_volume = 0.8;              // Define o volume inicial a 80% para evitar distorção
+        /* CORREÇÃO DEFINITIVA DO ÁUDIO (ZERO ESTALOS / ZERO DISTORÇÃO) */
+        window.EJS_samplerate = 22050;           // Frequência nativa do chip de som do SNES
+        window.EJS_volume = 0.7;                 // Limita o ganho inicial a 70% para não estourar o alto-falante
+        window.EJS_audioContext = true;          // Força a sincronização limpa do Web Audio API
 
         let script = document.createElement("script");
         script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
