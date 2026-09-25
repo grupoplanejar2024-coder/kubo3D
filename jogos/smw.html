@@ -58,28 +58,28 @@
         </div>
     </div>
 
-  <script>
-        function startEmulator() {
-            document.getElementById('game-card').style.display = 'none';
-            document.getElementById('game-container').style.display = 'block';
+<script>
+    function startEmulator() {
+        document.getElementById('game-card').style.display = 'none';
+        document.getElementById('game-container').style.display = 'block';
 
-            // Configurações do EmulatorJS otimizadas para Celular
-            window.EJS_player = "#game";
-            window.EJS_core = "snes9x2010"; // Core mais leve
-            window.EJS_gameName = "Super Mario World";
-            window.EJS_color = "#e74c3c";
-            window.EJS_startOnLoaded = true;
-            window.EJS_threads = false; // Desativa multithreading pesado
-            window.EJS_disableDatabases = true; // Evita gargalos de armazenamento
+        // Configurações do EmulatorJS
+        window.EJS_player = "#game";
+        window.EJS_core = "snes9x2010"; // Usará o core leve direto da CDN
+        window.EJS_gameName = "Super Mario World";
+        window.EJS_color = "#e74c3c";
+        window.EJS_startOnLoaded = true;
+        window.EJS_threads = false;
+        window.EJS_disableDatabases = true;
 
-            // Ficheiros locais e ROM via CDN do jsDelivr
-            window.EJS_pathtodata = "../emulatorjs/data/";
-            window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
+        // Carrega o motor e os ficheiros diretamente da CDN oficial
+        window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+        window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
 
-            let script = document.createElement("script");
-            script.src = "../emulatorjs/data/loader.js";
-            document.body.appendChild(script);
-        }
-    </script>
+        let script = document.createElement("script");
+        script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+        document.body.appendChild(script);
+    }
+</script>
 </body>
 </html>
