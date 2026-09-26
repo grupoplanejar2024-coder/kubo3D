@@ -95,39 +95,32 @@
     function startEmulator() {
         const card = document.getElementById('game-card');
         const container = document.getElementById('game-container');
-
+        
         if (card) card.style.display = 'none';
         if (container) container.style.display = 'block';
 
-        /* CONFIGURAÇÃO DO EMULADOR LEVE */
+        /* CONFIGURAÇÃO BASE DO EMULATORJS */
         window.EJS_player = "#game";
-        window.EJS_core = "snes9x"; 
+        window.EJS_core = "snes9x";
         window.EJS_gameName = "Super Mario World";
         window.EJS_color = "#e74c3c";
         window.EJS_startOnLoaded = true;
 
-        /* CAMINHO DA ROM EM ZIP (Elimina o Network Error no Celular) */
-        window.EJS_gameUrl = "../roms/smw.zip";
-
-        /* SERVIDOR CDN OFICIAL */
+        /* SERVIDOR CDN OFICIAL (Sempre atualizado) */
         window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+        window.EJS_gameUrl = "https://cdn.jsdelivr.net/gh/grupoplanejar2024-coder/kubo3D@main/roms/smw.sfc";
 
-        /* OTIMIZAÇÕES ANTI-TRAVAMENTO E ANTI-ÁUDIO ESTOURADO */
-        window.EJS_threads = false;             // Desativa multiprocessamento instável
-        window.EJS_webgl = false;               // Aceleração via GPU do celular
+        /* TRAVAS ANTI-TRAVAMENTO PARA O CHROME EM TELEMÓVEIS */
+        window.EJS_threads = false;              // Desativa threads pesadas que travam a CPU móvel
         window.EJS_multiview = false;
-        window.EJS_disableFocusCanvas = true;
-        window.EJS_smooth = false;              // Mantém FPS alto em celulares fracos
+        window.EJS_disableFocusCanvas = true;    // Garante 60 FPS estáveis sem perder foco no toque
+        window.EJS_smooth = false;               // Desativa filtros pesados de imagem (pixel art fluido)
         window.EJS_mouse = false;
 
-        /* AJUSTE DE ÁUDIO */
-        window.EJS_Volume = 0.8;
-        window.EJS_Settings = {
-            sound: true,
-            fps: false
-        };
+        /* CORREÇÃO DE ÁUDIO ESTOURADO / CHIADO NO CHROME */
+        window.EJS_samplerate = 22050;           // Taxa leve e nativa do SNES (limpa os estalos)
+        window.EJS_volume = 0.5;                 // Volume a 50% elimina a distorção no chip do telemóvel
 
-        /* CARREGADOR DO EMULADOR */
         let script = document.createElement("script");
         script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
         script.async = true;
