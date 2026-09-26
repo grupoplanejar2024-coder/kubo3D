@@ -99,34 +99,41 @@
         if (card) card.style.display = 'none';
         if (container) container.style.display = 'block';
 
-        /* CONFIGURAÇÃO BASE DO EMULADOR */
+        /* 1. NÚCLEO OFICIAL DO EMULATORJS */
         window.EJS_player = "#game";
-        window.EJS_core = "snes9x";
+        window.EJS_core = "snes9x"; 
         window.EJS_gameName = "Super Mario World";
         window.EJS_color = "#e74c3c";
         window.EJS_startOnLoaded = true;
 
-        /* CAMINHO DA ROM EM ZIP */
+        /* 2. CAMINHO DA ROM EM ZIP */
         window.EJS_gameUrl = "../roms/smw.zip";
 
-        /* SERVIDOR CDN OFICIAL */
+        /* 3. SERVIDOR CDN OFICIAL */
         window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
 
-        /* CONFIGURAÇÕES DE PERFORMANCE ANTI-LAG NO CHROME */
-        window.EJS_threads = false;             // Impede engasgos do WASM
-        window.EJS_webgl = false;              // Canvas 2D nativo (muito mais leve no Chrome Android)
+        /* 4. DESATIVAR RECURSOS QUE PESAM NO CHROME DO CELULAR */
+        window.EJS_threads = false;             // Desativa threads pesadas que travam no Chrome
+        window.EJS_webgl = false;              // Usa Canvas 2D nativo (muito mais leve no Android)
         window.EJS_multiview = false;
         window.EJS_disableFocusCanvas = true;
-        window.EJS_smooth = false;              // Desativa filtros pesados
+        window.EJS_smooth = false;              // Desativa filtros de imagem pesados
         window.EJS_mouse = false;
 
-        /* CORREÇÃO DO ÁUDIO NO CHROME (Remove a trava de sincronização que engasga o jogo) */
+        /* 5. CONFIGURAÇÃO DE ÁUDIO LIMPA */
         window.EJS_Volume = 0.8;
         window.EJS_Settings = {
             sound: true,
             fps: false
         };
 
+        /* CARREGADOR DO EMULADOR */
+        let script = document.createElement("script");
+        script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+        script.async = true;
+        document.body.appendChild(script);
+    }
+</script>
         /* DESBLOQUEIO E RESUME DO AUDIO CONTEXT PARA O CHROME ANDROID */
         const unlockAudio = () => {
             if (window.AudioContext || window.webkitAudioContext) {
