@@ -90,6 +90,7 @@
     <div id="game-container">
         <div id="game"></div>
     </div>
+
 <script>
     function startEmulator() {
         const card = document.getElementById('game-card');
@@ -133,8 +134,7 @@
         script.async = true;
         document.body.appendChild(script);
     }
-</script>
-        /* DESBLOQUEIO E RESUME DO AUDIO CONTEXT PARA O CHROME ANDROID */
+</script>        /* DESBLOQUEIO E RESUME DO AUDIO CONTEXT PARA O CHROME ANDROID */
         const unlockAudio = () => {
             if (window.AudioContext || window.webkitAudioContext) {
                 const ctx = new (window.AudioContext || window.webkitAudioContext)();
