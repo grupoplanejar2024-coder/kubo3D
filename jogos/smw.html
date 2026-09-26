@@ -99,35 +99,43 @@
         if (card) card.style.display = 'none';
         if (container) container.style.display = 'block';
 
-        /* CONFIGURAÇÃO DO EMULADOR LEVE */
+        /* CONFIGURAÇÃO BASE DO EMULADOR */
         window.EJS_player = "#game";
-        window.EJS_core = "snes9x"; 
+        window.EJS_core = "snes9x";
         window.EJS_gameName = "Super Mario World";
         window.EJS_color = "#e74c3c";
         window.EJS_startOnLoaded = true;
 
-        /* CAMINHO DA ROM EM ZIP (Elimina o Network Error no Celular) */
+        /* CAMINHO DA ROM EM ZIP */
         window.EJS_gameUrl = "../roms/smw.zip";
 
         /* SERVIDOR CDN OFICIAL */
         window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
 
-        /* OTIMIZAÇÕES ANTI-TRAVAMENTO E ANTI-ÁUDIO ESTOURADO */
-        window.EJS_threads = false;             // Desativa multiprocessamento instável
-        window.EJS_webgl = true;               // Aceleração via GPU do celular
+        /* DESEMPENHO E DESATIVAÇÃO DE RECURSOS PESADOS */
+        window.EJS_threads = false;             // Impede engasgos de multiprocessamento
+        window.EJS_webgl = false;              // Canvas 2D nativo do Android
         window.EJS_multiview = false;
         window.EJS_disableFocusCanvas = true;
-        window.EJS_smooth = false;              // Mantém FPS alto em celulares fracos
+        window.EJS_smooth = false;              // Sem filtros de imagem pesados
         window.EJS_mouse = false;
 
-        /* AJUSTE DE ÁUDIO */
+        /* CORREÇÃO DEFINITIVA DO ÁUDIO PARA CHROME MOBILE */
         window.EJS_Volume = 0.8;
         window.EJS_Settings = {
             sound: true,
             fps: false
         };
 
-        /* CARREGADOR DO EMULADOR */
+        /* TRATAMENTO DE INICIALIZAÇÃO DE ÁUDIO SEM ENGASGOS NO CHROME */
+        window.addEventListener('click', function() {
+            if (typeof Module !== 'undefined' && Module.SDL2 && Module.SDL2.audioContext) {
+                if (Module.SDL2.audioContext.state === 'suspended') {
+                    Module.SDL2.audioContext.resume();
+                }
+            }
+        }, { once: true });
+
         let script = document.createElement("script");
         script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
         script.async = true;
