@@ -112,20 +112,39 @@
         /* SERVIDOR CDN OFICIAL */
         window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
 
-        /* DESEMPENHO E DESATIVAÇÃO DE RECURSOS PESADOS */
-        window.EJS_threads = false;             // Impede engasgos de multiprocessamento
-        window.EJS_webgl = false;              // Canvas 2D nativo do Android
+        /* CONFIGURAÇÕES DE PERFORMANCE ANTI-LAG NO CHROME */
+        window.EJS_threads = false;             // Impede engasgos do WASM
+        window.EJS_webgl = false;              // Canvas 2D nativo (muito mais leve no Chrome Android)
         window.EJS_multiview = false;
         window.EJS_disableFocusCanvas = true;
-        window.EJS_smooth = false;              // Sem filtros de imagem pesados
+        window.EJS_smooth = false;              // Desativa filtros pesados
         window.EJS_mouse = false;
 
-        /* CORREÇÃO DEFINITIVA DO ÁUDIO PARA CHROME MOBILE */
+        /* CORREÇÃO DO ÁUDIO NO CHROME (Remove a trava de sincronização que engasga o jogo) */
         window.EJS_Volume = 0.8;
         window.EJS_Settings = {
             sound: true,
             fps: false
         };
+
+        /* DESBLOQUEIO E RESUME DO AUDIO CONTEXT PARA O CHROME ANDROID */
+        const unlockAudio = () => {
+            if (window.AudioContext || window.webkitAudioContext) {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                if (ctx.state === 'suspended') {
+                    ctx.resume();
+                }
+            }
+        };
+        document.addEventListener('touchstart', unlockAudio, { once: true });
+        document.addEventListener('click', unlockAudio, { once: true });
+
+        let script = document.createElement("script");
+        script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+        script.async = true;
+        document.body.appendChild(script);
+    }
+</script>
 
         /* TRATAMENTO DE INICIALIZAÇÃO DE ÁUDIO SEM ENGASGOS NO CHROME */
         window.addEventListener('click', function() {
