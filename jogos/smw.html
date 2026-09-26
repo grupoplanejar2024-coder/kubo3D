@@ -99,7 +99,7 @@
         if (card) card.style.display = 'none';
         if (container) container.style.display = 'block';
 
-        /* 1. NÚCLEO OFICIAL DO EMULATORJS */
+        /* 1. CONFIGURAÇÃO BASE DO EMULADOR */
         window.EJS_player = "#game";
         window.EJS_core = "snes9x"; 
         window.EJS_gameName = "Super Mario World";
@@ -112,17 +112,18 @@
         /* 3. SERVIDOR CDN OFICIAL */
         window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
 
-        /* 4. DESATIVAR RECURSOS QUE PESAM NO CHROME DO CELULAR */
-        window.EJS_threads = false;             // Desativa threads pesadas
-        window.EJS_webgl = false;              // Usa Canvas 2D nativo (mais leve no Android)
+        /* 4. PERFORMANCE ANTI-LAG PARA CELULARES */
+        window.EJS_threads = false;             // Desativa multiprocessamento instável
+        window.EJS_webgl = false;              // Usa Canvas 2D nativo do Android
         window.EJS_multiview = false;
         window.EJS_disableFocusCanvas = true;
-        window.EJS_smooth = false;              // Desativa filtros pesados
+        window.EJS_smooth = false;              // Desativa filtros de imagem pesados
         window.EJS_mouse = false;
 
-        /* 5. CORREÇÃO DEFINITIVA DE ÁUDIO NO CHROME */
+        /* 5. CORREÇÃO DEFINITIVA DO ÁUDIO NO GOOGLE CHROME MOBILE */
         window.EJS_Volume = 0.8;
-        window.EJS_alignAudio = false;          // IMPEDE O CHROME DE TRAVAR O JOGO AO SINCRONIZAR SOM
+        window.EJS_audioWorklet = false;        // DESATIVA AUDIOWORKLET (Elimina o lag de áudio no Chrome)
+        window.EJS_alignAudio = false;          // Impede o Chrome de pausar quadros por causa do buffer
         window.EJS_Settings = {
             sound: true,
             fps: false
@@ -134,37 +135,6 @@
         script.async = true;
         document.body.appendChild(script);
     }
-</script>        /* DESBLOQUEIO E RESUME DO AUDIO CONTEXT PARA O CHROME ANDROID */
-        const unlockAudio = () => {
-            if (window.AudioContext || window.webkitAudioContext) {
-                const ctx = new (window.AudioContext || window.webkitAudioContext)();
-                if (ctx.state === 'suspended') {
-                    ctx.resume();
-                }
-            }
-        };
-        document.addEventListener('touchstart', unlockAudio, { once: true });
-        document.addEventListener('click', unlockAudio, { once: true });
-
-        let script = document.createElement("script");
-        script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
-        script.async = true;
-        document.body.appendChild(script);
-    }
 </script>
-
-        /* TRATAMENTO DE INICIALIZAÇÃO DE ÁUDIO SEM ENGASGOS NO CHROME */
-        window.addEventListener('click', function() {
-            if (typeof Module !== 'undefined' && Module.SDL2 && Module.SDL2.audioContext) {
-                if (Module.SDL2.audioContext.state === 'suspended') {
-                    Module.SDL2.audioContext.resume();
-                }
-            }
-        }, { once: true });
-
-        let script = document.createElement("script");
-        script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
-        script.async = true;
-        document.body.appendChild(script);
-    }
-</script>
+</body>
+</html>
