@@ -99,34 +99,53 @@
         if (card) card.style.display = 'none';
         if (container) container.style.display = 'block';
 
-        /* 1. CONFIGURAÇÃO BASE DO EMULADOR */
+        /* 1. CONFIGURAÇÕES NATIVAS DE ALTA PERFORMANCE */
         window.EJS_player = "#game";
         window.EJS_core = "snes9x"; 
         window.EJS_gameName = "Super Mario World";
         window.EJS_color = "#e74c3c";
         window.EJS_startOnLoaded = true;
 
-        /* 2. CAMINHO DA ROM EM ZIP */
+        /* 2. CAMINHO DA ROM COMPACTADA */
         window.EJS_gameUrl = "../roms/smw.zip";
-
-        /* 3. SERVIDOR CDN OFICIAL */
         window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
 
-        /* 4. PERFORMANCE ANTI-LAG PARA CELULARES */
-        window.EJS_threads = false;             // Desativa multiprocessamento instável
-        window.EJS_webgl = false;              // Usa Canvas 2D nativo do Android
+        /* 3. DESATIVAÇÃO TOTAL DE TRAVAS DO CHROME ANDROID */
+        window.EJS_threads = false;
+        window.EJS_webgl = false;               // Força Canvas 2D nativo do Android
         window.EJS_multiview = false;
         window.EJS_disableFocusCanvas = true;
-        window.EJS_smooth = false;              // Desativa filtros de imagem pesados
+        window.EJS_smooth = false;              // Sem renderização de filtros
         window.EJS_mouse = false;
 
-        /* 5. CORREÇÃO DEFINITIVA DO ÁUDIO NO GOOGLE CHROME MOBILE */
+        /* 4. BYPASS DE ÁUDIO DEFINITIVO (PONTES DE BUFFER PARA CHROME) */
         window.EJS_Volume = 0.8;
-        window.EJS_audioWorklet = false;        // DESATIVA AUDIOWORKLET (Elimina o lag de áudio no Chrome)
-        window.EJS_alignAudio = false;          // Impede o Chrome de pausar quadros por causa do buffer
+        window.EJS_audioWorklet = false;        // Cancela o micromanagement de threads do Chrome
+        window.EJS_alignAudio = false;          // IMPEDE QUE O SOM TRAVE A IMAGEM (Desvincula Vídeo de Áudio)
+        window.EJS_sampleRate = 44100;          // Taxa idêntica ao chip de som do Android
+        
         window.EJS_Settings = {
             sound: true,
             fps: false
+        };
+
+        /* 5. HACK DE INTERCEPTAÇÃO DE AUDIOCONTEXT DO CHROME */
+        window.EJS_on = function(type, func) {
+            if (type === 'start') {
+                // Força o desbloqueio da placa de áudio no toque do usuário
+                let unlock = function() {
+                    if (window.AudioContext || window.webkitAudioContext) {
+                        let ac = new (window.AudioContext || window.webkitAudioContext)();
+                        if (ac.state === 'suspended') {
+                            ac.resume();
+                        }
+                    }
+                    document.removeEventListener('touchstart', unlock);
+                    document.removeEventListener('click', unlock);
+                };
+                document.addEventListener('touchstart', unlock, { passive: true });
+                document.addEventListener('click', unlock, { passive: true });
+            }
         };
 
         /* CARREGADOR DO EMULADOR */
@@ -136,5 +155,3 @@
         document.body.appendChild(script);
     }
 </script>
-</body>
-</html>
