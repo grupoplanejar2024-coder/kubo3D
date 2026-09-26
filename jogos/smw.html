@@ -90,7 +90,6 @@
     <div id="game-container">
         <div id="game"></div>
     </div>
-
 <script>
     function startEmulator() {
         const card = document.getElementById('game-card');
@@ -113,15 +112,16 @@
         window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
 
         /* 4. DESATIVAR RECURSOS QUE PESAM NO CHROME DO CELULAR */
-        window.EJS_threads = false;             // Desativa threads pesadas que travam no Chrome
-        window.EJS_webgl = false;              // Usa Canvas 2D nativo (muito mais leve no Android)
+        window.EJS_threads = false;             // Desativa threads pesadas
+        window.EJS_webgl = false;              // Usa Canvas 2D nativo (mais leve no Android)
         window.EJS_multiview = false;
         window.EJS_disableFocusCanvas = true;
-        window.EJS_smooth = false;              // Desativa filtros de imagem pesados
+        window.EJS_smooth = false;              // Desativa filtros pesados
         window.EJS_mouse = false;
 
-        /* 5. CONFIGURAÇÃO DE ÁUDIO LIMPA */
+        /* 5. CORREÇÃO DEFINITIVA DE ÁUDIO NO CHROME */
         window.EJS_Volume = 0.8;
+        window.EJS_alignAudio = false;          // IMPEDE O CHROME DE TRAVAR O JOGO AO SINCRONIZAR SOM
         window.EJS_Settings = {
             sound: true,
             fps: false
